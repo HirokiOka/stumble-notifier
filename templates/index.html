@@ -6,11 +6,12 @@
 </head>
 <body>
   <h1>Students</h1>
-  <ul id="student-id">
     {% for id in ids %} 
-    <li><a href="student/{{ id }}"</a>{{ id }}</li>
+    <button id="s{{ id }}"><a href="student/{{ id }}">STUDENT {{ id }}</a></button>
+    {% if id % 3 == 0: %}
+      <br/>
+    {% endif %}
     {% endfor %}
-  </ul>
   <script src="/static/js/index.js"></script>
 </body>
 </html>

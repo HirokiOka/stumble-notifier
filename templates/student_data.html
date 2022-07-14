@@ -12,6 +12,7 @@
           <td>Executed at</td>
           <td>Source Line of Code</td>
           <td>AST Edit Distance</td>
+          <td>Link to source code</td>
         </tr>
       </thead>
       <tbody>
@@ -20,6 +21,7 @@
           <td>{{ d.time }}</td>
           <td>{{ d.sloc }}</td>
           <td>{{ d.ed }}</td>
+          <td><a href="/student/{{ id }}/{{ d.time.replace(':', '_') }}">source</td>
         </tr>
       {% endfor %}
       </tbody>

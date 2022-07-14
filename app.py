@@ -20,5 +20,11 @@ def student_data(id):
     return render_template('student_data.html', title=title, id=id, data=data)
 
 
+@app.route('/student/<id>/<time>')
+def source(id, time):
+    time_exp = time.replace('_', ':')
+    return render_template('source.html', title=title, id=id, time=time_exp)
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=8000)
