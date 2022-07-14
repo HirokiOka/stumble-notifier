@@ -1,23 +1,16 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>stumble notifier</title>
-  <link rel="stylesheet" href="/public/css/styles.css">
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body>
   <h1>Students</h1>
-  <div id="student-id">
-    <button id="s1" onclick="location.href='./one.html'">STUDENT 001</button>
-    <button id="s2">STUDENT 002</button>
-    <button id="s3">STUDENT 003</button>
-    </br>
-    <button id="s4">STUDENT 004</button>
-    <button id="s5">STUDENT 005</button>
-    <button id="s6">STUDENT 006</button>
-  </div>
-  <script src="/public/js/index.js"></script>
+  <ul id="student-id">
+    {% for id in ids %} 
+    <li><a href="student/{{ id }}"</a>{{ id }}</li>
+    {% endfor %}
+  </ul>
+  <script src="/static/js/index.js"></script>
 </body>
 </html>
