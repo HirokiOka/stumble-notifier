@@ -18,10 +18,10 @@
       <tbody>
       {% for d in data %} 
         <tr>
-          <td>{{ d.time }}</td>
+          <td>{{ d.executedat }}</td>
           <td>{{ d.sloc }}</td>
-          <td>{{ d.ed }}</td>
-          <td><a href="/student/{{ id }}/{{ d.time.replace(':', '_') }}">source</td>
+          <td>{{ d.ted }}</td>
+          <td><a href="/student/{{ id }}/{{ d.executedat }}">source</td>
         </tr>
       {% endfor %}
       </tbody>
