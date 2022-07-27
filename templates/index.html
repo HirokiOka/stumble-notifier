@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>{{ title }}</title>
-  <link rel="stylesheet" href="/static/css/styles.css">
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
   <h1>Students</h1>
     {% for id in ids %} 
     <button id="s{{ id }}"><a href="student/{{ id }}">STUDENT {{ id }}</a></button>
@@ -13,5 +8,4 @@
     {% endif %}
     {% endfor %}
   <script src="/static/js/index.js"></script>
-</body>
-</html>
+  {% endblock %}

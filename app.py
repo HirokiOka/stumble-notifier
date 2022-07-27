@@ -2,7 +2,6 @@ from flask import Flask, render_template
 from db import connect_db, get_users, get_code_params, get_source_code
 
 app = Flask(__name__)
-title = "Stumble Notifier"
 conn = connect_db()
 
 
@@ -11,7 +10,6 @@ def index():
     kwargs = {}
     unique_ids = set(get_users(conn))
     ids = list(unique_ids)
-    kwargs['title'] = title
     kwargs['ids'] = ids
     return render_template('index.html', **kwargs)
 
@@ -19,7 +17,6 @@ def index():
 @app.route('/student/<id>')
 def student_data(id):
     kwargs = {}
-    kwargs['title'] = title
     kwargs['id'] = id
     kwargs['data'] = get_code_params(conn, id)
     return render_template('student_data.html', **kwargs)
@@ -28,7 +25,6 @@ def student_data(id):
 @app.route('/student/<id>/<time>')
 def source(id, time):
     kwargs = {}
-    kwargs['title'] = title
     kwargs['id'] = id
     kwargs['time'] = time
     kwargs['code'] = get_source_code(conn, id, time)

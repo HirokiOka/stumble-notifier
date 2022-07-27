@@ -1,31 +1,26 @@
-<html>
-  <head>
-    <title>{{ title }}</title>
-    <link rel="stylesheet" href="/static/css/styles.css">
-  </head>
-  <body>
-    <h1>Student {{ id }}</h1>
-    <div id="data">
-    <table>
-      <thead>
-        <tr>
-          <td>Executed at</td>
-          <td>Source Line of Code</td>
-          <td>AST Edit Distance</td>
-          <td>Link to source code</td>
-        </tr>
-      </thead>
-      <tbody>
-      {% for d in data %} 
-        <tr>
-          <td>{{ d.executedat }}</td>
-          <td>{{ d.sloc }}</td>
-          <td>{{ d.ted }}</td>
-          <td><a href="/student/{{ id }}/{{ d.executedat }}">source</td>
-        </tr>
-      {% endfor %}
-      </tbody>
-    </table>
-    </div>
-  </body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+  <h1>Student {{ id }}</h1>
+  <div id="data">
+  <table>
+    <thead>
+      <tr>
+        <td>Executed at</td>
+        <td>Source Line of Code</td>
+        <td>AST Edit Distance</td>
+        <td>Link to source code</td>
+      </tr>
+    </thead>
+    <tbody>
+    {% for d in data %} 
+      <tr>
+        <td>{{ d.executedat }}</td>
+        <td>{{ d.sloc }}</td>
+        <td>{{ d.ted }}</td>
+        <td><a href="/student/{{ id }}/{{ d.executedat }}">source</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+{% endblock %}
