@@ -8,10 +8,11 @@ user = os.getenv('DEV_USER')
 password = os.getenv('DEV_PASSWORD')
 host = os.getenv('DEV_HOST')
 port = os.getenv('DEV_PORT')
+db_name = os.getenv('DEV_DBNAME')
 
 
 def connect_db():
-    conn = sa.create_engine(f'{driver}://{user}:{password}@{host}:{port}')
+    conn = sa.create_engine(f'{driver}://{user}:{password}@{host}:{port}/{db_name}')
     return conn
 
 
