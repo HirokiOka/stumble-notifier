@@ -5,7 +5,7 @@
   <table>
     <thead>
       <tr>
-        <td>Executed at</td>
+        <td>Saved at</td>
         <td>Source Line of Code</td>
         <td>AST Edit Distance</td>
         <td>Link to source code</td>
@@ -14,10 +14,10 @@
     <tbody>
     {% for d in data %} 
       <tr>
-        <td>{{ d.executedat }}</td>
+        <td>{{ d.savedAt }}</td>
         <td>{{ d.sloc }}</td>
         <td>{{ d.ted }}</td>
-        <td><a href="/student/{{ id }}/{{ d.executedat }}">source</td>
+        <td><a href="/student/{{ id }}/{{ d.savedAt.replace('/', '_') }}">source</td>
       </tr>
     {% endfor %}
     </tbody>

@@ -1,11 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
   <h1>Students</h1>
-    {% for id in ids %} 
-    <button id="s{{ id }}"><a href="student/{{ id }}">STUDENT {{ id }}</a></button>
-    {% if id % 3 == 0: %}
-      <br/>
-    {% endif %}
-    {% endfor %}
-  <script src="/static/js/fetcher.js"></script>
+    <table>
+      <thead>
+        <tr>
+          <td>Student ID</td>
+          <td>State (Code) </td>
+          <td>State (Multi) </td>
+        </tr>
+      </thead>
+      <tbody>
+      {% for id in ids %} 
+      <tr>
+        <td id="{{ id }}"><a href="student/{{ id }}">{{ id }}</a></td>
+        <td></td>
+        <td></td>
+        <br/>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
   {% endblock %}
