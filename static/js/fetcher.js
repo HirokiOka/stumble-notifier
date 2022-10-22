@@ -6,6 +6,7 @@ ids.sort();
 
 setInterval(async () => {
   const result = await fetch(URL).then(res => res.json());
+  console.log(result);
   ids.forEach((v, i) => {
     const codeEle = document.getElementById(`${v}-code`);
     const multiEle = document.getElementById(`${v}-multi`);

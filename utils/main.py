@@ -91,6 +91,8 @@ def make_feature_data(std_id, codeparams, elapsed_sec, rri_chunk, whs_params):
     return feature_data
 
 
+
+
 def main():
     sleep_sec = 0.1
     start_time = datetime.datetime.now()
@@ -101,6 +103,7 @@ def main():
              "whs_path": "../whs-data/test_1.csv",
              "current_heart_data": {},
              "rri_chunk": [],
+             "stumble_states": [],
              "last_code_saved": -1
              },
             {
@@ -108,6 +111,7 @@ def main():
              "whs_path": "../whs-data/test_3.csv",
              "current_heart_data": {},
              "rri_chunk": [],
+             "stumble_states": [],
              "last_code_saved": -1
              }
             ]
@@ -118,11 +122,11 @@ def main():
         code_model = pickle.load(f)
 
     while(True):
-        for d in p_info:
+        for d in test_info:
             update_heart_params(d)
 
         # Prediction
-        for idx, info in enumerate(p_info):
+        for idx, info in enumerate(test_info):
             if (len(info["rri_chunk"]) > pnn50_window_size):
                 std_id = info["id"]
                 latest_codeparams = get_codeparams_from_std_id(std_id)[-1]
@@ -148,7 +152,7 @@ def main():
                           source_code,
                           feature_dict, multi_result, code_result))
                 except:
-                    print("Post failed")
+                    print("Prediction data post failed")
 
                 info["last_code_saved"] = saved_at
                 info["rri_chunk"].pop(0)

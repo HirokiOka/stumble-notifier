@@ -3,7 +3,17 @@ from fetch_db import get_predictions_from_std_id, get_unique_ids, get_codeparams
 
 app = Flask(__name__)
 ids = ["test", "2041201h", "2070877H", "2110645H", "2120823h", "2141064h"]
+stumble_seq_length = 10
+code_stumble_states = [[], [], [], [], [], []]
+multi_stumble_states = [[], [], [], [], [], []]
 ids.sort()
+
+
+def is_stumble(state_queue, ratio=0.4):
+    threshold = int(len(state_queue) * ratio)
+    if (state_queue.count(0) > threshold):
+        return False
+    return True
 
 
 @app.route('/')
@@ -33,12 +43,18 @@ def source(id, time):
 
 
 @app.route('/data', methods=['GET'])
-def get_predicted_data():
+def get_stumble_data():
     results = []
-    for i in ids:
-        predictions = get_predictions_from_std_id(i)[-1]
-        results.append([predictions['code_prediction'],
-                        predictions['multi_prediction']])
+    for i, id in enumerate(ids):
+        predictions = get_predictions_from_std_id(id)[-1]
+        code_stumble_states[i].append(predictions['code_prediction'])
+        multi_stumble_states[i].append(predictions['multi_prediction'])
+        current_states = []
+        if ((len(code_stumble_states[i]) - 1) > stumble_seq_length):
+            current_states.append(is_stumble(code_stumble_states[i]))
+        if ((len(multi_stumble_states[i]) - 1) > stumble_seq_length):
+            current_states.append(is_stumble(multi_stumble_states[i]))
+        results.append(current_states)
     return results
 
 
