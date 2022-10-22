@@ -1,32 +1,15 @@
-const URL = 'http://127.0.0.1:8000/data';
-const intervalMiliSec = 1000;
-
-const API_URL = "https://data.mongodb-api.com/app/data-bxlxk/endpoint/data/v1/action/findOne"
-const API_KEY = "v0w45xdmq3Wx31SJ9KA07DofnOvne5XNkC4ORGjthyIJXiMRXQrFywuVGhBEhxyx"
-const options = {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Request-Headers': '*',
-        'Access-Control-Allow-Origin': '*',
-        'api-key': API_KEY
-    },
-    body: JSON.stringify({
-        'collection': 'features_and_predictions',
-        'database': 'test',
-        'dataSource': 'Cluster0',
-        'filter': {
-            "std_id": 'test'
-        }
-      })
-    };
+const intervalMiliSec = 5000;
+const URL = "http://127.0.0.1:8000/data";
+const ids = ["test", "2041201h", "2070877H", "2110645H", "2120823h", "2141064h"];
+ids.sort();
 
 
-/*
 setInterval(async () => {
-  fetch(API_URL, options)
-    .then(res => res.json())
-    .then(result => console.log(result));
-  
+  const result = await fetch(URL).then(res => res.json());
+  ids.forEach((v, i) => {
+    const codeEle = document.getElementById(`${v}-code`);
+    const multiEle = document.getElementById(`${v}-multi`);
+    codeEle.style.background = result[i][0] ? 'red' : 'white';
+    multiEle.style.background = result[i][1] ? 'red' : 'white';
+  });
 }, intervalMiliSec);
-*/

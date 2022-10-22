@@ -2,21 +2,14 @@ from flask import Flask, render_template
 from fetch_db import get_predictions_from_std_id, get_unique_ids, get_codeparams_from_std_id, get_codeparams_from_time
 
 app = Flask(__name__)
-# conn = connect_db()
+ids = ["test", "2041201h", "2070877H", "2110645H", "2120823h", "2141064h"]
+ids.sort()
 
 
 @app.route('/')
 def index():
     kwargs = {}
-    ids = ["test", "2041201h", "2070877H", "2110645H", "2120823h", "2141064h"]
-    ids.sort()
     kwargs['ids'] = ids
-    kwargs['code_pred'] = []
-    kwargs['multi_pred'] = []
-    for i in ids:
-        predictions = get_predictions_from_std_id(i)[-1]
-        kwargs['code_pred'].append(predictions['code_prediction'])
-        kwargs['multi_pred'].append(predictions['multi_prediction'])
     return render_template('index.html', **kwargs)
 
 
@@ -37,6 +30,16 @@ def source(id, time):
     kwargs['time'] = saved_at
     kwargs['code'] = get_codeparams_from_time(saved_at)['code']
     return render_template('source.html', **kwargs)
+
+
+@app.route('/data', methods=['GET'])
+def get_predicted_data():
+    results = []
+    for i in ids:
+        predictions = get_predictions_from_std_id(i)[-1]
+        results.append([predictions['code_prediction'],
+                        predictions['multi_prediction']])
+    return results
 
 
 if __name__ == '__main__':
