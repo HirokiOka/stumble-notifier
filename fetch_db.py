@@ -30,6 +30,26 @@ def get_codeparams_from_std_id(std_id):
     return res_json['documents']
 
 
+def get_predictions_from_std_id(std_id):
+    payload = json.dumps({
+        "collection": "features_and_predictions",
+        "database": "test",
+        "dataSource": "Cluster0",
+        "filter": {
+            "std_id": std_id
+        }
+    })
+    headers = {
+      'Content-Type': 'application/json',
+      'Access-Control-Request-Headers': '*',
+      'api-key': api_key
+    }
+    action = 'action/find'
+    url = api_url + action
+    response = request("POST", url, headers=headers, data=payload)
+    res_json = json.loads(response.text)
+    return res_json['documents']
+
 def post_all_data_from_id(std_id, saved_at, source_code, features, multi_pred, code_pred):
     payload = json.dumps({
         "collection": "features_and_predictions",

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+  <script src="../static/js/fetcher.js"></script>
   <h1>Students</h1>
     <table>
       <thead>
@@ -13,8 +14,8 @@
       {% for id in ids %} 
       <tr>
         <td id="{{ id }}"><a href="student/{{ id }}">{{ id }}</a></td>
-        <td></td>
-        <td></td>
+        <td> {{ code_pred[loop.index0] }}</td>
+        <td> {{ multi_pred[loop.index0] }}</td>
         <br/>
       </tr>
       {% endfor %}
