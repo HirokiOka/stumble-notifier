@@ -1,23 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h1>Student {{ id }}</h1>
-  <div id="data">
-  <table>
-    <thead>
+  <h1 class="text-4xl text-center py-4 font-bold">Student ID: {{ id }}</h1>
+  <div id="data" class="text-2xl text-center flex justify-center">
+  <table class="table-auto border-black">
+    <thead class="text-center border-black">
       <tr>
-        <td>Saved at</td>
-        <td>Source Line of Code</td>
-        <td>AST Edit Distance</td>
-        <td>Link to source code</td>
+        <td class='border px-4 font-bold'>Saved at</td>
+        <td class='border px-4 font-bold'>Source Line of Code</td>
+        <td class='border px-4 font-bold'>AST Edit Distance</td>
+        <td class='border px-4 font-bold'>Link to source code</td>
       </tr>
     </thead>
     <tbody>
     {% for d in data %} 
       <tr>
-        <td>{{ d.savedAt }}</td>
-        <td>{{ d.sloc }}</td>
-        <td>{{ d.ted }}</td>
-        <td><a href="/student/{{ id }}/{{ d.savedAt.replace('/', '_') }}">source</td>
+        <td class='border px-4'>{{ d.savedAt }}</td>
+        <td class='border px-4'>{{ d.sloc }}</td>
+        <td class='border px-4'>{{ d.ted }}</td>
+        <td class='border px-4 text-blue-600'><a href="/student/{{ id }}/{{ d.savedAt.replace('/', '_') }}">source</td>
       </tr>
     {% endfor %}
     </tbody>

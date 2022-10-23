@@ -1,24 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
-  <script src="https://cdn.tailwindcss.com"></script>
   <script src="../static/js/fetcher.js"></script>
-  <h1>Stumble Notifier</h1>
-    <table>
-      <thead>
+  <h1 class="text-4xl text-center py-4 font-bold">Stumble Notifier</h1>
+  <div class="text-2xl text-center flex justify-center">
+    <table class="table-auto border-black">
+      <thead class="text-center border-black">
         <tr>
-          <td>Student ID</td>
-          <td>Code</td>
-          <td>Multi</td>
+          <td class='border px-4 font-bold'>Student ID</td>
+          <td class='border px-2 font-bold'>Code</td>
+          <td class='border px-2 font-bold'>Multi</td>
         </tr>
       </thead>
       <tbody>
       {% for id in ids %} 
-      <tr>
-        <td id="{{ id }}"><a href="student/{{ id }}">{{ id }}</a></td>
-        <td id="{{ id }}-code"></td>
-        <td id="{{ id }}-multi"></td>
+      <tr class="text-blue-600">
+        <td id="{{ id }}" class='border'><a href="student/{{ id }}">{{ id }}</a></td>
+        <td id="{{ id }}-code" class='border'></td>
+        <td id="{{ id }}-multi" class='border'></td>
       </tr>
       {% endfor %}
       </tbody>
     </table>
   {% endblock %}
+  </div>

@@ -2,7 +2,7 @@ from flask import Flask, render_template
 from fetch_db import get_predictions_from_std_id, get_unique_ids, get_codeparams_from_std_id, get_codeparams_from_time
 
 app = Flask(__name__)
-ids = ["test", "2041201h", "2070877H", "2110645H", "2120823h", "2141064h"]
+ids = ["oka", "Matsui", "2070877H", "2110645H", "2120823h", "2141064h"]
 stumble_seq_length = 10
 code_stumble_states = [[], [], [], [], [], []]
 multi_stumble_states = [[], [], [], [], [], []]
