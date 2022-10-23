@@ -1,6 +1,6 @@
 const intervalMiliSec = 5000;
 const URL = "http://127.0.0.1:8000/data";
-const ids = ["oka", "Matsui", "2070877H", "2110645H", "2120823h", "2141064h"];
+const ids = ["oka", "2070877H", "2110645H", "2120823h", "2141064h"];
 ids.sort();
 
 

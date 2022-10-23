@@ -50,6 +50,7 @@ def get_predictions_from_std_id(std_id):
     res_json = json.loads(response.text)
     return res_json['documents']
 
+
 def post_all_data_from_id(std_id, saved_at, source_code, features, multi_pred, code_pred):
     payload = json.dumps({
         "collection": "features_and_predictions",
@@ -123,12 +124,11 @@ def get_unique_ids():
     return list(set(result))
 
 
-"""
 ids = get_unique_ids()
 ids.sort()
-participant_ids = ids[:6]
-print(participant_ids)
+print(ids)
 
+"""
 
 data = get_codeparams_from_std_id(participant_ids[0])
 print(data[-1]['savedAt'])

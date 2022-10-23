@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% block content %}
-  <script src="../static/js/fetcher.js"></script>
   <h1 class="text-4xl text-center py-4 font-bold">Stumble Notifier</h1>
   <div class="text-2xl text-center flex justify-center">
     <table class="table-auto border-black">
@@ -21,5 +20,6 @@
       {% endfor %}
       </tbody>
     </table>
-  {% endblock %}
   </div>
+  <script src="../static/js/fetcher.js"></script>
+  {% endblock %}
