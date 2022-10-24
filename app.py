@@ -3,21 +3,16 @@ from fetch_db import get_predictions_from_std_id, get_unique_ids, get_codeparams
 
 app = Flask(__name__)
 
-stumble_seq_length = 10
+stumble_seq_length = 60
 p_data = [
-        {"id": "2070877H", "code_stumble_states": [], "multi_stumble_states": []},
-        {"id": "2110645H", "code_stumble_states": [], "multi_stumble_states": []},
-        {"id": "2120823h",  "code_stumble_states": [], "multi_stumble_states": []},
-        {"id": "2141064h", "code_stumble_states": [], "multi_stumble_states": []},
-        {"id": "oka", "code_stumble_states": [], "multi_stumble_states": []}
+        {"id": "2160897H", "code_stumble_states": [], "multi_stumble_states": []},
+        {"id": "2181076H",  "code_stumble_states": [], "multi_stumble_states": []},
+        {"id": "2191201H", "code_stumble_states": [], "multi_stumble_states": []},
         ]
 ids = []
 for d in p_data:
     ids.append(d["id"])
 ids.sort()
-# ids = ["oka", "Matsui", "2070877H", "2110645H", "2120823h", "2141064h"]
-# code_stumble_states = [[], [], [], [], [], []]
-# multi_stumble_states = [[], [], [], [], [], []]
 
 
 def is_stumble(state_queue, ratio=0.4):
@@ -57,15 +52,18 @@ def source(id, time):
 def get_stumble_data():
     results = []
     for i, d in enumerate(p_data):
-        predictions = get_predictions_from_std_id(d["id"])[-1]
-        d["code_stumble_states"].append(predictions['code_prediction'])
-        d["multi_stumble_states"].append(predictions['multi_prediction'])
-        current_states = []
-        if ((len(d["code_stumble_states"]) - 1) > stumble_seq_length):
-            current_states.append(is_stumble(d["code_stumble_states"]))
-        if ((len(d["multi_stumble_states"]) - 1) > stumble_seq_length):
-            current_states.append(is_stumble(d["multi_stumble_states"]))
-        results.append(current_states)
+        try:
+            predictions = get_predictions_from_std_id(d["id"])[-1]
+            d["code_stumble_states"].append(predictions['code_prediction'])
+            d["multi_stumble_states"].append(predictions['multi_prediction'])
+            current_states = []
+            if ((len(d["code_stumble_states"]) - 1) > stumble_seq_length):
+                current_states.append(is_stumble(d["code_stumble_states"]))
+            if ((len(d["multi_stumble_states"]) - 1) > stumble_seq_length):
+                current_states.append(is_stumble(d["multi_stumble_states"]))
+            results.append(current_states)
+        except:
+            print(d["id"] + ': Prediction data not found')
     return results
 
 

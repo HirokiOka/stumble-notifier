@@ -106,13 +106,5 @@ def get_unique_ids():
 """
 ids = get_unique_ids()
 ids.sort()
-participant_ids = ids[:6]
-print(participant_ids)
-
-
-data = get_codeparams_from_std_id(participant_ids[0])
-print(data[-1]['savedAt'])
-for d in data:
-    print(d['savedAt'])
-    print('------')
+print(ids)
 """
