@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template
 from fetch_db import get_predictions_from_std_id, get_unique_ids, get_codeparams_from_std_id, get_codeparams_from_time
 
@@ -68,4 +69,5 @@ def get_stumble_data():
 
 
 if __name__ == '__main__':
-    app.run()
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
