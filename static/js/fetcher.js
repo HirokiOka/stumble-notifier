@@ -1,6 +1,6 @@
 const intervalMiliSec = 5000;
-const URL = "http://127.0.0.1:8000/data";
-const ids = ["oka", "2070877H", "2110645H", "2120823h", "2141064h"];
+const URL = "https://stumble-notifier.herokuapp.com/data";
+const ids = ["2160897H", "2181076H", "2191201H"];
 ids.sort();
 
 
