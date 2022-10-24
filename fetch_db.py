@@ -124,11 +124,11 @@ def get_unique_ids():
     return list(set(result))
 
 
+"""
 ids = get_unique_ids()
 ids.sort()
 print(ids)
 
-"""
 
 data = get_codeparams_from_std_id(participant_ids[0])
 print(data[-1]['savedAt'])
