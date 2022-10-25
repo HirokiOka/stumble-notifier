@@ -54,7 +54,9 @@ def get_stumble_data():
     results = []
     for i, d in enumerate(p_data):
         try:
+            print(d['id'])
             predictions = get_predictions_from_std_id(d["id"])[-1]
+            print(predictions)
             d["code_stumble_states"].append(predictions['code_prediction'])
             d["multi_stumble_states"].append(predictions['multi_prediction'])
             current_states = []
