@@ -32,7 +32,7 @@ def get_codeparams_from_std_id(std_id):
 
 def get_predictions_from_std_id(std_id):
     payload = json.dumps({
-        "collection": "features_and_predictions",
+        "collection": "production_pred",
         "database": "test",
         "dataSource": "Cluster0",
         "filter": {

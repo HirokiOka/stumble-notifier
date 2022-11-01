@@ -16,6 +16,26 @@ for d in p_data:
     ids.append(d["id"])
 ids.sort()
 
+"""
+def old_get_stumble_data():
+    results = []
+    for i, d in enumerate(p_data):
+        try:
+            print(d['id'])
+            predictions = get_predictions_from_std_id(d["id"])[-1]
+            print(predictions)
+            d["code_stumble_states"].append(predictions['code_prediction'])
+            d["multi_stumble_states"].append(predictions['multi_prediction'])
+            current_states = []
+            if ((len(d["code_stumble_states"]) - 1) > stumble_seq_length):
+                current_states.append(is_stumble(d["code_stumble_states"]))
+            if ((len(d["multi_stumble_states"]) - 1) > stumble_seq_length):
+                current_states.append(is_stumble(d["multi_stumble_states"]))
+            results.append(current_states)
+        except:
+            print(d["id"] + ': Prediction data not found')
+    return results
+"""
 
 def is_stumble(state_queue, ratio=0.4):
     threshold = int(len(state_queue) * ratio)
@@ -55,42 +75,13 @@ def get_stumble_data():
     results = []
     for i, d in enumerate(p_data):
         try:
-            print(d['id'])
+            print(d["id"])
             predictions = get_predictions_from_std_id(d["id"])[-1]
             print(predictions)
-            d["code_stumble_states"].append(predictions['code_prediction'])
-            d["multi_stumble_states"].append(predictions['multi_prediction'])
-            current_states = []
-            if ((len(d["code_stumble_states"]) - 1) > stumble_seq_length):
-                current_states.append(is_stumble(d["code_stumble_states"]))
-            if ((len(d["multi_stumble_states"]) - 1) > stumble_seq_length):
-                current_states.append(is_stumble(d["multi_stumble_states"]))
-            results.append(current_states)
+            results.append([predictions['code_prediction'], predictions['multi_prediction']])
         except:
             print(d["id"] + ': Prediction data not found')
     return results
-
-
-"""
-def get_stumble_data():
-    results = []
-    for i, d in enumerate(p_data):
-        try:
-            print(d['id'])
-            predictions = get_predictions_from_std_id(d["id"])[-1]
-            print(predictions)
-            d["code_stumble_states"].append(predictions['code_prediction'])
-            d["multi_stumble_states"].append(predictions['multi_prediction'])
-            current_states = []
-            if ((len(d["code_stumble_states"]) - 1) > stumble_seq_length):
-                current_states.append(is_stumble(d["code_stumble_states"]))
-            if ((len(d["multi_stumble_states"]) - 1) > stumble_seq_length):
-                current_states.append(is_stumble(d["multi_stumble_states"]))
-            results.append(current_states)
-        except:
-            print(d["id"] + ': Prediction data not found')
-    return results
-"""
 
 
 if __name__ == '__main__':
