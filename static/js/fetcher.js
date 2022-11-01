@@ -1,4 +1,4 @@
-const intervalMiliSec = 1000;
+const intervalMiliSec = 2000;
 const URL = "https://stumble-notifier.herokuapp.com/data";
 const ids = ["2011234H", "2061231H", "2140643H", "2150505H"];
 ids.sort();

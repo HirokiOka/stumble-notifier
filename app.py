@@ -80,13 +80,14 @@ def get_stumble_data():
             print(predictions)
             results.append([predictions['code_prediction'], predictions['multi_prediction']])
         except:
+            results.append([0, 0])
             print(d["id"] + ': Prediction data not found')
     return results
 
 
 if __name__ == '__main__':
-    """
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
     """
     app.run()
+    """
