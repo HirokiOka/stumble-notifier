@@ -1,6 +1,8 @@
 import os
 from flask import Flask, render_template
-from fetch_db import get_predictions_from_std_id, get_unique_ids, get_codeparams_from_std_id, get_codeparams_from_time
+from db import connect_db, get_collection
+from fetch_db import get_predictions_from_std_id,\
+        get_unique_ids, get_codeparams_from_std_id, get_codeparams_from_time
 
 app = Flask(__name__)
 
@@ -16,7 +18,7 @@ for d in p_data:
     ids.append(d["id"])
 ids.sort()
 
-"""
+
 def old_get_stumble_data():
     results = []
     for i, d in enumerate(p_data):
@@ -35,7 +37,7 @@ def old_get_stumble_data():
         except:
             print(d["id"] + ': Prediction data not found')
     return results
-"""
+
 
 def is_stumble(state_queue, ratio=0.4):
     threshold = int(len(state_queue) * ratio)
