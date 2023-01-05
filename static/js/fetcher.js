@@ -1,9 +1,9 @@
 const intervalMiliSec = 10000;
-const URL = "http://127.0.0.1:5000";
-const users = document.querySelector('.user-name');
+const baseUrl = "http://127.0.0.1:5000/data";
+const usersNode = document.querySelectorAll('.user-name');
+const userNames = Array.from(usersNode, v => v.innerText);
 
 setInterval(async () => {
-  try {
     const result = await fetch(URL).then(res => res.json());
     console.log(result);
     /*
@@ -14,7 +14,4 @@ setInterval(async () => {
       multiEle.style.background = result[i][1] ? 'red' : 'white';
     });
     */
-  } catch(e) {
-    console.log(e);
-  }
 }, intervalMiliSec);

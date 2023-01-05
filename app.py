@@ -41,12 +41,13 @@ def source(name, time):
     return render_template('source.html', **kwargs)
 
 
-@app.route('/data', methods=['GET'])
+@app.route('/data/<users>', methods=['GET'])
 def get_processed_data_of_all(users):
     processed_results = []
     for user in users:
         processed_data = get_latest_document(client, pp_coll, user)
         processed_results.append(processed_data)
+    print(processed_results)
     return processed_results
 
 
