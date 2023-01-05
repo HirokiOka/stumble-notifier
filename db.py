@@ -21,6 +21,25 @@ def get_collection(client, collection_name):
     return collection
 
 
+def get_all_documents(client, collection, user_name):
+    documents = list(collection.find({"userName": user_name}))
+    return documents
+
+
 def get_latest_document(client, collection, user_name):
     documents = list(collection.find({"userName": user_name}))
     return documents[-1]
+
+
+def get_codeparams_from_time(client, collection, user_name, executed_time):
+    document = collection.find({
+        "userName": user_name,
+        "executedAt": executed_time
+        })
+    return document[0]
+
+
+def test_db():
+    client = connect_db()
+    collection = get_collection(client, "processed")
+    print(collection.distinct('userName'))

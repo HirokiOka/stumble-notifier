@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h1 class="text-4xl text-center py-4 font-bold">Student ID:</h1>
+<h1 class="text-4xl text-center py-4 font-bold">Student ID: {{ id }}</h1>
   <div id="data" class="text-2xl text-center flex justify-center">
   <table class="table-auto border-black">
     <thead class="text-center border-black">
@@ -14,10 +14,10 @@
     <tbody>
     {% for d in data %} 
       <tr>
-        <td class='border px-4'>{{ d.savedAt }}</td>
+        <td class='border px-4'>{{ d.executedAt }}</td>
         <td class='border px-4'>{{ d.sloc }}</td>
         <td class='border px-4'>{{ d.ted }}</td>
-        <td class='border px-4 text-blue-600'><a href="/student/{{ id }}/{{ d.savedAt.replace('/', '_') }}">source</td>
+        <td class='border px-4 text-blue-600'><a href="/student/{{ id }}/{{ d.executedAt.replace('/', '_') }}">source</td>
       </tr>
     {% endfor %}
     </tbody>

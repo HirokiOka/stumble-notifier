@@ -1,19 +1,19 @@
-const intervalMiliSec = 2000;
-const URL = "https://stumble-notifier.herokuapp.com/data";
-const ids = ["2011234H", "2061231H", "2140643H", "2150505H"];
-ids.sort();
-
+const intervalMiliSec = 10000;
+const URL = "http://127.0.0.1:5000";
+const users = document.querySelector('.user-name');
 
 setInterval(async () => {
   try {
     const result = await fetch(URL).then(res => res.json());
     console.log(result);
-    ids.forEach((v, i) => {
+    /*
+    users.forEach((v, i) => {
       const codeEle = document.getElementById(`${v}-code`);
       const multiEle = document.getElementById(`${v}-multi`);
       codeEle.style.background = result[i][0] ? 'red' : 'white';
       multiEle.style.background = result[i][1] ? 'red' : 'white';
     });
+    */
   } catch(e) {
     console.log(e);
   }
