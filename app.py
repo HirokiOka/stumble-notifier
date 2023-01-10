@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, Response
+from flask import Flask, render_template, request
 from db import connect_db, get_collection,\
         get_all_documents, get_latest_document, get_codeparams_from_time
 

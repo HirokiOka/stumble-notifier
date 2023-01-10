@@ -1,5 +1,5 @@
 const intervalMiliSec = 5000;
-const endpoint = "http://127.0.0.1:5000/data";
+const endpoint = "https://stumble-notifier.adaptable.app/data";
 const usersNode = document.querySelectorAll('.user-name');
 const userNames = Array.from(usersNode, v => v.innerText);
 const urls = userNames.map(v => endpoint + '/' + v);
