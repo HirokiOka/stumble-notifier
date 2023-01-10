@@ -1,4 +1,3 @@
-import json
 import os
 from flask import Flask, render_template, request, Response
 from db import connect_db, get_collection,\
