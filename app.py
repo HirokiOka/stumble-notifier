@@ -1,5 +1,6 @@
+import json
 import os
-from flask import Flask, render_template
+from flask import Flask, render_template, request, Response
 from db import connect_db, get_collection,\
         get_all_documents, get_latest_document, get_codeparams_from_time
 
@@ -41,13 +42,17 @@ def source(name, time):
     return render_template('source.html', **kwargs)
 
 
-@app.route('/data/<users>', methods=['GET'])
-def get_processed_data_of_all(users):
+@app.route('/data', methods=['POST'])
+def get_processed_data():
+    payload = request.json
+    names = payload.get('data')
     processed_results = []
-    for user in users:
-        processed_data = get_latest_document(client, pp_coll, user)
-        processed_results.append(processed_data)
-    print(processed_results)
+    for name in names:
+        processed_data = get_latest_document(client, pp_coll, name)
+        p_name = processed_data['userName']
+        p_multi = processed_data['multi']
+        p_code = processed_data['code']
+        processed_results.append({'name': p_name, 'multi': p_multi, 'code': p_code})
     return processed_results
 
 
