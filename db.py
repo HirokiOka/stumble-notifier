@@ -37,10 +37,10 @@ def get_latest_ten_documents(collection, user_name):
     return documents[docs_len-10:docs_len]
 
 
-def get_codeparams_from_time(client, collection, user_name, executed_time):
+def get_codeparams_from_time(client, collection, user_name, saved_time):
     document = collection.find({
         "userName": user_name,
-        "executedAt": executed_time
+        "savedAt": saved_time
         })
     return document[0]
 

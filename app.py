@@ -27,18 +27,19 @@ def student_data(name):
     code_params = get_all_documents(client, params_coll, name)
     kwargs["id"] = name
     kwargs["data"] = code_params
+    print(kwargs["data"])
     return render_template("student_data.html", **kwargs)
 
 
 @app.route('/student/<name>/<time>')
 def source(name, time):
-    executed_at = time.replace('_', '/')
+    saved_at = time.replace('_', '/')
     kwargs = {}
     kwargs["id"] = name
-    kwargs["time"] = executed_at
+    kwargs["time"] = saved_at
     codeparams = get_codeparams_from_time(client, params_coll,
-                                          name, executed_at)
-    kwargs["code"] = codeparams["sourceCode"]
+                                          name, saved_at)
+    kwargs["code"] = codeparams["code"]
     return render_template('source.html', **kwargs)
 
 
