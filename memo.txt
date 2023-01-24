@@ -1,0 +1,9 @@
+- fetch processed data every 10 seconds
+  - 10 length of data, change display each 1 seconds
+  - data:
+    - userName
+    - multi
+    - code
+    - (timestamp)
+- Add timestamp of processed data
+- error handling when user data is empty

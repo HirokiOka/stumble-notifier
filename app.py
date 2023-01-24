@@ -1,7 +1,8 @@
 import os
 from flask import Flask, render_template, request
 from db import connect_db, get_collection,\
-        get_all_documents, get_latest_document, get_codeparams_from_time
+        get_all_documents, get_latest_document,\
+        get_latest_ten_documents, get_codeparams_from_time
 
 app = Flask(__name__)
 
@@ -47,11 +48,9 @@ def get_processed_data():
     names = payload.get('data')
     processed_results = []
     for name in names:
-        processed_data = get_latest_document(client, pp_coll, name)
-        p_name = processed_data['userName']
-        p_multi = processed_data['multi']
-        p_code = processed_data['code']
-        processed_results.append({'name': p_name, 'multi': p_multi, 'code': p_code})
+        processed_data = get_latest_ten_documents(pp_coll, name)
+        mapped_data = [[x['processed_time'], x['multi'], x['code']] for x in processed_data]
+        processed_results.append({'name': name, 'data': mapped_data})
     return processed_results
 
 

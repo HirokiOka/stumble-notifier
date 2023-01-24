@@ -1,8 +1,10 @@
-const intervalMiliSec = 5000;
+const intervalMiliSec = 1000;
+//const endpoint = "http://127.0.0.1:5000/data";
 const endpoint = "https://stumble-notifier.adaptable.app/data";
 const usersNode = document.querySelectorAll('.user-name');
 const userNames = Array.from(usersNode, v => v.innerText);
 const urls = userNames.map(v => endpoint + '/' + v);
+const pTimeEle = document.getElementById('p-time');
 
 async function postData(data) {
   const options = {
@@ -19,15 +21,24 @@ async function postData(data) {
   return resJson;
 }
 
+let result = postData(userNames);
+
 setInterval(async () => {
-  const result = await postData(userNames);
+  result = await postData(userNames);
+}, 10000)
+
+let idx = 0;
+let lastTime = 0;
+setInterval(async () => {
+  pTimeEle.innerText = result[0]['data'][idx][0];
   result.forEach((r, i) => {
     const name = r['name'];
-    const multiResult = r['multi'];
-    const codeResult = r['code'];
-    const codeEle = document.getElementById(`${name}-code`);
+    const multiResult = r['data'][idx][1];
+    const codeResult = r['data'][idx][2];
     const multiEle = document.getElementById(`${name}-multi`);
-    codeEle.style.background = codeResult ? 'red' : 'white';
+    const codeEle = document.getElementById(`${name}-code`);
     multiEle.style.background = multiResult ? 'red' : 'white';
+    codeEle.style.background = codeResult ? 'red' : 'white';
   });
+  idx = ++idx % result.length;
 }, intervalMiliSec);
