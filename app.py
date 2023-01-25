@@ -15,7 +15,7 @@ params_coll = get_collection(client, "codeparams")
 @app.route('/')
 def index():
     kwargs = {}
-    unique_users = pp_coll.distinct("userName")
+    unique_users = params_coll.distinct("userName")
     unique_users.sort()
     kwargs["ids"] = unique_users
     return render_template("index.html", **kwargs)

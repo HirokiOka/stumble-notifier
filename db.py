@@ -16,7 +16,7 @@ def connect_db():
 
 
 def get_collection(client, collection_name):
-    db = client.development
+    db = client.experiment
     collection = db[collection_name]
     return collection
 
